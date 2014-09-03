@@ -41,19 +41,37 @@ public class PackageList {
 	 * @return the MCPackage object for the requested short identifier
 	 */
 	public MCPackage getPackage(String mcPackage) {
-		return (new MCPackage() );
-		//TODO: implement getPackage()
+		
+		for(MCPackage pack : this.packageList){
+			
+			if(pack.mcpackage == mcPackage){
+				return pack;
+			}
+			
+		}
+		
+		return null;
+		
 	}
 
 	//Returns the version of a specific mcpackage
 	public int getPackageVersion(String mcPackage) {
+		
+		MCPackage pack = this.getPackage(mcPackage);
+		
+		if(pack != null){
+			return pack.version;
+		}
+		
 		return 0;
-		//TODO: Implement getPackageVersion
+		
 	}
 
 	//Returns the full details of a specific mcpackage.
 	//Used as more efficient method of generating the package listings
 	public getPackageDetails(String mcPackage) {
+		
+		
 		
 	}
 
