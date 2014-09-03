@@ -21,6 +21,7 @@ public class PackageList {
 	public String listName;
 	public Date lastUpdated;
 
+	//TODO:  Constructor
 	PackageList() {
 		
 	}
@@ -41,30 +42,23 @@ public class PackageList {
 	 * @return the MCPackage object for the requested short identifier
 	 */
 	public MCPackage getPackage(String mcPackage) {
-		
+
 		for(MCPackage pack : this.packageList){
-			
 			if(pack.mcpackage == mcPackage){
 				return pack;
 			}
-			
 		}
-		
 		return null;
-		
 	}
 
 	//Returns the version of a specific mcpackage
 	public int getPackageVersion(String mcPackage) {
-		
 		MCPackage pack = this.getPackage(mcPackage);
-		
+
 		if(pack != null){
 			return pack.version;
 		}
-		
 		return 0;
-		
 	}
 
 	//Returns the full details of a specific mcpackage.
