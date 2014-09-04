@@ -44,7 +44,7 @@ public class PackageList {
 	public MCPackage getPackage(String mcPackage) {
 
 		for(MCPackage pack : this.packageList){
-			if(pack.mcpackage == mcPackage){
+			if(pack.packageID == mcPackage){
 				return pack;
 			}
 		}
