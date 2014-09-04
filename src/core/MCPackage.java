@@ -2,13 +2,37 @@ package core;
 
 public class MCPackage {
 
+	/**
+	 * The uniqueID (shortname) of the mod.  Analogous to Linux package names.
+	 * Should not include any spaces, underscores, or special characters.
+	 */
 	protected String packageID;
+	/**
+	 * The version number the package is currently at.
+	 */
 	protected int version;
+	/**
+	 * The Human-Readable name of the mod.  This should be the actual mod name.
+	 * Can contain spaces or any printable characters.
+	 */
 	protected String name;
+	/**
+	 * The short Description for the mod.
+	 * Should be less than 50 characters long, or it may be cut off.
+	 */
 	protected String shortDesc;
+	/**
+	 * The size (in bytes) which the mod will consume.
+	 * Technically should include the config file, and anything else the mod will download
+	 */
 	protected int size;
-	protected String[] tag;
-	protected String imageLink;
+	/**
+	 * a list of tags (generally categories) which the mod falls into.
+	 * There are a number of supported recommended categories you should use, listed elsewhere.
+	 * There are also some special tags which may invoke special behavior.
+	 * TODO:  Document special cases for tags here
+	 */
+	protected String[] tags;
 
 	//TODO: Discuss.  Does a string list cover it?  What about version Numbers?
 	protected String[] depends;
@@ -20,7 +44,7 @@ public class MCPackage {
 	//architecture?
 
 	protected String md5Sum;
-	protected String downloadLink;
+	protected String fileName;
 
 	protected String author;
 	protected String maintainer;
@@ -49,6 +73,9 @@ public class MCPackage {
 	MCPackage() {
 		
 	}
+
+
+	//Get standard package details
 
 	
 
