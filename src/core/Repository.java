@@ -3,8 +3,7 @@ package core;
 public class Repository extends PackageList {
 
 	public String listURL;
-	
-	//TODO: constructor (will be called from Manager (only I think) )
+
 	Repository (String name, String url) {
 		super(name);
 		this.listURL = url;
@@ -12,13 +11,16 @@ public class Repository extends PackageList {
 
 	//Since this is a repository, we fetch the repo, and update everything
 	public boolean updateList() {
+
 		return false;
 		//TODO: implement updateList for Repositories
-		
-		//Fetch list
-		//
+		//Fetch URL
+		//Save URL
+		//Parse into separate objects
+		//if parsing was successful, replace all old objects
+		//update lastUpdated
+		//return true
 
-		
 	}
 
 	/**
@@ -46,17 +48,19 @@ public class Repository extends PackageList {
 	 * @return if it was successful
 	 */
 	public boolean saveList() {
-		
+		//TODO:  Implement saveList for repository
+		return false;
 	}
 
 	/**
 	 * Loads the local DB (cache) into the repository
 	 * 
 	 * @param file
-	 * @return
+	 * @return if it was successful
 	 */
 	public boolean loadList(String name) {
-		
+		//TODO:  Implement loadList for repository
+		return false;
 	}
 
 }

@@ -3,8 +3,6 @@ package core;
 import java.util.Calendar;
 import java.util.Date;
 
-import core.MCPackage;
-
 /**
  * This handles a specific list of packages.  
  * Normally, this is a specific repository.
@@ -25,7 +23,6 @@ public class PackageList {
 	public String listName;
 	public Date lastUpdated;
 
-	//TODO:  Constructor
 	PackageList(String name) {
 		this.listName = name;
 		//Set the last-used date to jan 1 1990 (never) just in case.
@@ -71,7 +68,8 @@ public class PackageList {
 
 	//Returns the full details of a specific mcpackage.
 	//Used as more efficient method of generating the package listings
-	public getPackageDetails(String mcPackage) {
+	//Will need to discuss return type(s)
+	public void getPackageDetails(String mcPackage) {
 		
 	}
 
