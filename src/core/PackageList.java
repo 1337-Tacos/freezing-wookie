@@ -1,12 +1,16 @@
 package core;
 
+import java.util.Calendar;
 import java.util.Date;
+
 import core.MCPackage;
 
 /**
- * This handles a specific list of packages
+ * This handles a specific list of packages.  
  * Normally, this is a specific repository.
  * Includes all methods to update list, get specific details, etc.
+ * a PackageList is kept separate from Repository mainly because we can list local mods in one
+ * While that is obviously not a repo, and those local mods may no longer exist in said repo.
  * @author 1n5aN1aC
  */
 public class PackageList {
@@ -22,8 +26,12 @@ public class PackageList {
 	public Date lastUpdated;
 
 	//TODO:  Constructor
-	PackageList() {
-		
+	PackageList(String name) {
+		this.listName = name;
+		//Set the last-used date to jan 1 1990 (never) just in case.
+		Calendar cal = Calendar.getInstance();
+		cal.set(1990, 1, 1);
+		this.lastUpdated = cal.getTime();
 	}
 
 	/**
@@ -43,8 +51,8 @@ public class PackageList {
 	 */
 	public MCPackage getPackage(String mcPackage) {
 
-		for(MCPackage pack : this.packageList){
-			if(pack.packageID == mcPackage){
+		for(MCPackage pack : this.packageList) {
+			if(pack.packageID == mcPackage) {
 				return pack;
 			}
 		}
@@ -55,7 +63,7 @@ public class PackageList {
 	public int getPackageVersion(String mcPackage) {
 		MCPackage pack = this.getPackage(mcPackage);
 
-		if(pack != null){
+		if(pack != null) {
 			return pack.version;
 		}
 		return 0;
@@ -65,24 +73,12 @@ public class PackageList {
 	//Used as more efficient method of generating the package listings
 	public getPackageDetails(String mcPackage) {
 		
-		
-		
 	}
 
-	//Returns a list of package Objects.
+	//Returns an array of package Objects.
 	//TODO: discuss.  objects?  names?  details?
 	public MCPackage[] getPackageList() {
 		return this.packageList;
-	}
-
-	//Saves the list to local DB
-	public boolean saveList() {
-		
-	}
-
-	//Loads the local DB into the list
-	public boolean loadList() {
-		
 	}
 
 }
