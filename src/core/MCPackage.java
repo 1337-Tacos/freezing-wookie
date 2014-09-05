@@ -51,7 +51,6 @@ public class MCPackage {
 	protected String homePage;
 	protected String Description;
 
-	
 	/**
 	 * Absolute minimum constructor.  These fields are required.
 	 * Anything less than these will error out / not be recorded.
