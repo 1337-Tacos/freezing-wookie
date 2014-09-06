@@ -1,5 +1,7 @@
 package core;
 
+import java.util.ArrayList;
+
 public class MCPackage {
 
 	/**
@@ -32,13 +34,13 @@ public class MCPackage {
 	 * There are also some special tags which may invoke special behavior.
 	 * TODO:  Document special cases for tags here
 	 */
-	protected String[] tags;
+	protected ArrayList<String> tags;
 
 	//TODO: Discuss.  Does a string list cover it?  What about version Numbers?
-	protected String[] depends;
-	protected String[] suggests;
-	protected String[] conflicts;
-	protected String[] replaces;
+	protected ArrayList<String> depends;
+	protected ArrayList<String> suggests;
+	protected ArrayList<String> conflicts;
+	protected ArrayList<String> replaces;
 
 	//type?
 	//architecture?
