@@ -75,6 +75,9 @@ public class MCPackage {
 
 
 	//Get standard package details
-	
+
+	public String getDownloadLink() {
+		return "packages/" + fileName;
+	}
 
 }
