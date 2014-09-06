@@ -1,5 +1,8 @@
 package core;
 
+import java.io.IOException;
+import org.jsoup.Jsoup;
+
 public class Repository extends PackageList {
 
 	public String listURL;
@@ -11,16 +14,31 @@ public class Repository extends PackageList {
 
 	//Since this is a repository, we fetch the repo, and update everything
 	public boolean updateList() {
-
-		return false;
 		//TODO: implement updateList for Repositories
-		//Fetch URL
-		//Save URL
-		//Parse into separate objects
-		//if parsing was successful, replace all old objects
-		//update lastUpdated
-		//return true
 
+		//Fetch URL
+		String html = downloadRepo();
+
+		//Save URL
+
+		//Parse into separate objects
+
+		//if parsing was successful, replace all old objects
+
+		//update lastUpdated
+		return false;
+
+	}
+
+	private String downloadRepo() {
+		String html = "";
+		try {
+			html = Jsoup.connect(this.listURL + "/packages").get().html();
+		}
+		catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+		return html;
 	}
 
 	/**
