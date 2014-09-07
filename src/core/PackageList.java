@@ -16,7 +16,7 @@ public class PackageList {
 	/**
 	 * the actual list of packages this holds
 	 */
-	private Vector<MCPackage> packageList = null;
+	protected Vector<MCPackage> packageList = new Vector<MCPackage>();
 
 	/**
 	 * the User-friendly name of this list of packages
