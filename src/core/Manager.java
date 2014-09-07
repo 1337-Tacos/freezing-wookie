@@ -10,7 +10,6 @@ import java.util.Set;
 public class Manager {
 
 	private List<Repository> repoList;
-	private PackageList installed;
 
 	//TODO:  Manager Constructor
 

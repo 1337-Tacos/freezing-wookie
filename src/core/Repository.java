@@ -1,6 +1,9 @@
 package core;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.StringReader;
+
 import org.jsoup.Jsoup;
 
 public class Repository extends PackageList {
@@ -12,16 +15,16 @@ public class Repository extends PackageList {
 		this.listURL = url;
 	}
 
+	//TODO: implement updateList for Repositories
 	//Since this is a repository, we fetch the repo, and update everything
 	public boolean updateList() {
-		//TODO: implement updateList for Repositories
 
-		//Fetch URL
-		String html = downloadRepo();
-
-		//Save URL
-
-		//Parse into separate objects
+		try {
+			String html = downloadRepo();	//Fetch URL
+			parseUpdate(html);				//Parse into separate objects
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 
 		//if parsing was successful, replace all old objects
 
@@ -30,15 +33,22 @@ public class Repository extends PackageList {
 
 	}
 
-	private String downloadRepo() {
+	//TODO:  needs more safety features
+	private String downloadRepo() throws IOException {
 		String html = "";
-		try {
-			html = Jsoup.connect(this.listURL + "/packages").get().html();
-		}
-		catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
+		html = Jsoup.connect(this.listURL + "/packages").get().html();
 		return html;
+	}
+
+	private void parseUpdate(String page) throws IOException {
+		BufferedReader br = new BufferedReader(new StringReader(page));
+		String line;
+
+		MCPackage curPack = new MCPackage();
+
+		while ((line = br.readLine()) != null) {
+			//handle line
+		}
 	}
 
 	/**

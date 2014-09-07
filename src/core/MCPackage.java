@@ -53,9 +53,12 @@ public class MCPackage {
 	protected String homePage;
 	protected String Description;
 
+	//TODO: minimum constructor
+	MCPackage() {
+	}
+
 	/**
-	 * Absolute minimum constructor.  These fields are required.
-	 * Anything less than these will error out / not be recorded.
+	 * Normal Constructor, minimum (to be full) parameters
 	 * @param id the uniqueID (shortname) of the mod.  This is a string with no spaces, analogous to linux package names.
 	 * @param name the Human-Readable name of the mod.  This should be the actual mod name.
 	 * @param version the version this package is on
@@ -67,11 +70,6 @@ public class MCPackage {
 
 	//TODO: normal constructor (common fields)
 	MCPackage(String id, int version, String name, String shortDesc, int size, String[] tags, String imageLink) {
-		
-	}
-
-	//TODO: full constructor (all fields)
-	MCPackage() {
 		
 	}
 
