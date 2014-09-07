@@ -1,8 +1,14 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -31,7 +37,6 @@ public class Builder extends JFrame {
 		this.initComp();
 		this.addComponents();
 		
-		this.pack();
 		this.setVisible(true);
 			
 	}
@@ -43,6 +48,7 @@ public class Builder extends JFrame {
 		this.remove = new JButton("Remove");
 		
 		this.modList = new JList<String>();
+		this.installList = new JList<String>();
 		
 		this.modInfo = new HTMLEditorKit();
 		
@@ -50,7 +56,31 @@ public class Builder extends JFrame {
 	
 	private void addComponents(){
 		
-		this.add(this.add, BorderLayout.WEST);
+		JPanel westPan = new JPanel();
+		JPanel buttonPan = new JPanel();
+		GridBagLayout buttonLayout = new GridBagLayout();
+		GridLayout wLayout = new GridLayout(1,3);
+		
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.CENTER;
+		
+		wLayout.setVgap(2);
+		wLayout.setHgap(2);
+		
+		this.modList.setBorder(BorderFactory.createEtchedBorder());
+		this.installList.setBorder(BorderFactory.createEtchedBorder());
+		
+		westPan.setLayout(wLayout);
+		buttonPan.setLayout(buttonLayout);
+		
+		buttonPan.add(this.add, gbc);
+		buttonPan.add(this.remove, gbc);
+		
+		westPan.add(this.modList);
+		westPan.add(buttonPan);
+		westPan.add(this.installList);
+		
+		this.add(westPan, BorderLayout.WEST);
 		
 	}
 	
