@@ -76,7 +76,7 @@ public class Manager {
 				//If it's already in it....
 				if (finalMap.containsKey(pack.packageID)) {
 					//Is this new one newer?
-					if (pack.version > finalMap.get(pack.packageID).version) {
+					if (pack.version.compareToIgnoreCase( finalMap.get(pack.packageID).version) > 0) {
 						//Then we update the one in the list.
 						finalMap.put(pack.packageID, pack);
 					}

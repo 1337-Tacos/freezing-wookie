@@ -58,13 +58,13 @@ public class PackageList {
 	}
 
 	//Returns the version of a specific mcpackage
-	public int getPackageVersion(String mcPackage) {
+	public String getPackageVersion(String mcPackage) {
 		MCPackage pack = this.getPackage(mcPackage);
 
 		if(pack != null) {
 			return pack.version;
 		}
-		return 0;
+		return "0";
 	}
 
 	//Returns the full details of a specific mcpackage.

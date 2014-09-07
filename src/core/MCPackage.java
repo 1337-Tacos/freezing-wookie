@@ -12,7 +12,7 @@ public class MCPackage {
 	/**
 	 * The version number the package is currently at.
 	 */
-	protected int version;
+	protected String version;
 	/**
 	 * The Human-Readable name of the mod.  This should be the actual mod name.
 	 * Can contain spaces or any printable characters.
