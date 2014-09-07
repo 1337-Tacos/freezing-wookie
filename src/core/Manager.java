@@ -1,10 +1,10 @@
 package core;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 //TODO:  re-factor class to have a more useful name.
 public class Manager {
@@ -52,7 +52,7 @@ public class Manager {
 	 * returns a list of all packages in all Repositories.
 	 * @return an array of all packages
 	 */
-	public MCPackage[] getAllPackages() {
+	public Vector<MCPackage> getAllPackages() {
 		return getPackageCatagory("all");
 	}
 
@@ -63,8 +63,8 @@ public class Manager {
 	 * @param cat the category which you want to return.  "all" returns all categories
 	 * @return the array with the matching packages
 	 */
-	public MCPackage[] getPackageCatagory(String cat) {
-		ArrayList<MCPackage> finalList = new ArrayList<MCPackage>();
+	public Vector<MCPackage> getPackageCatagory(String cat) {
+		Vector<MCPackage> finalList = new Vector<MCPackage>();
 		HashMap<String,MCPackage> finalMap = new HashMap<String,MCPackage>();
 		//For each Repo...
 		for (Repository repo : this.repoList) {
@@ -94,7 +94,7 @@ public class Manager {
 		for (String key : keys) {
 			finalList.add(finalMap.get(key));
 		}
-		return finalList.toArray(new MCPackage[finalList.size()]);
+		return finalList;
 	}
 
 	/**
@@ -102,19 +102,19 @@ public class Manager {
 	 * @param id the unique ID of the mod you want to find
 	 * @return an array of all instances of the mod
 	 */
-	public MCPackage[] getPackageOptions(String id) {
-		ArrayList<MCPackage> finalList = new ArrayList<MCPackage>();
+	public Vector<MCPackage> getPackageOptions(String id) {
+		Vector<MCPackage> finalList = new Vector<MCPackage>();
 		for (Repository repo : this.repoList) {
 			for (MCPackage pack : repo.getPackageList()) {
 				if (pack.packageID.equalsIgnoreCase(id))
 					finalList.add(pack);
 			}
 		}
-		return finalList.toArray(new MCPackage[finalList.size()]);
+		return finalList;
 	}
 
 	public void setInstalled(MCPackage pack, boolean install) {
-		//TODO:  create getInstalled()
+		//TODO:  create setInstalled()
 	}
 
 }

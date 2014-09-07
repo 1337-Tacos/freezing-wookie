@@ -2,6 +2,7 @@ package core;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Vector;
 
 /**
  * This handles a specific list of packages.  
@@ -15,7 +16,7 @@ public class PackageList {
 	/**
 	 * the actual list of packages this holds
 	 */
-	private MCPackage[] packageList = null;
+	private Vector<MCPackage> packageList = null;
 
 	/**
 	 * the User-friendly name of this list of packages
@@ -75,7 +76,7 @@ public class PackageList {
 
 	//Returns an array of package Objects.
 	//TODO: discuss.  objects?  names?  details?
-	public MCPackage[] getPackageList() {
+	public Vector<MCPackage> getPackageList() {
 		return this.packageList;
 	}
 
