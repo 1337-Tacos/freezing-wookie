@@ -11,10 +11,10 @@ import javax.swing.text.html.HTMLEditorKit;
 
 public class Builder extends JFrame {
 	
-	public JList modList, installList, totalDep, selectionDep;
+	public JList<String> modList, installList, totalDep, selectionDep;
 	public HTMLEditorKit modInfo;
 	public JButton build, add, remove;
-	public Vector testV;
+	public Vector<String> testV;
 	
 	public Builder(){
 		
@@ -23,7 +23,7 @@ public class Builder extends JFrame {
 		this.setSize(1280, 720);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		this.testV = new Vector(10);
+		this.testV = new Vector<String>(10);
 		
 		this.testV.add(new String("Derp"));
 		this.testV.add(new String("Merp"));
@@ -41,6 +41,8 @@ public class Builder extends JFrame {
 		this.build = new JButton("Build");
 		this.add = new JButton("Add");
 		this.remove = new JButton("Remove");
+		
+		this.modList = new JList<String>();
 		
 		this.modInfo = new HTMLEditorKit();
 		
