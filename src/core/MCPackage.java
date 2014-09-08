@@ -1,7 +1,6 @@
 package core;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class MCPackage {
 
@@ -35,13 +34,13 @@ public class MCPackage {
 	 * There are also some special tags which may invoke special behavior.
 	 * TODO:  Document special cases for tags here
 	 */
-	protected Vector<String> tags = new Vector<String>();
+	protected ArrayList<String> tags = new ArrayList<String>();
 
 	//TODO: Discuss.  Does a string list cover it?  What about version Numbers?
 	protected ArrayList<String> depends;
-	protected ArrayList<String> suggests;
+	protected ArrayList<String> suggests = new ArrayList<String>();
 	protected ArrayList<String> conflicts;
-	protected ArrayList<String> replaces;
+	protected ArrayList<String> replaces = new ArrayList<String>();
 
 	//type?
 	//architecture?

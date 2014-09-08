@@ -71,7 +71,7 @@ public abstract class RepoParser {
 		if (checkValidity(curPack))
 			packs.add(curPack);
 		else
-			System.out.println("a Package in " + repo.listName + " did not supply sufficient information.");
+			System.out.println("a Package in " + repo.listName + " did not supply sufficient information.2");
 
 		return packs;
 	}
@@ -106,13 +106,13 @@ public abstract class RepoParser {
 			//TODO:  add depends parsing
 			break;
 		case "Suggests":
-			//TODO:  add suggests parsing
+			dealSuggest(line[1], pack);
 			break;
 		case "Conflicts":
 			//TODO:  add conflicts parsing
 			break;
 		case "Replaces":
-			//TODO:  add replaces parsing
+			dealReplace(line[1], pack);
 			break;
 		case "MD5sum":
 			pack.md5Sum = line[1];
@@ -152,6 +152,20 @@ public abstract class RepoParser {
 	//TODO:  dealDescription
 	private static void dealDescription(String line) {
 		
+	}
+
+	private static void dealSuggest(String suggests, MCPackage pack) {
+		String[] parts = suggests.split("\\,\\ ");
+		for (int i = 0; i < parts.length; i++) {
+			pack.suggests.add(parts[i]);
+		}
+	}
+	
+	private static void dealReplace(String replaces, MCPackage pack) {
+		String[] parts = replaces.split("\\,\\ ");
+		for (int i = 0; i < parts.length; i++) {
+			pack.replaces.add(parts[i]);
+		}
 	}
 
 	private static boolean checkValidity(MCPackage pack) {
