@@ -1,40 +1,31 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.util.Vector;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.text.html.HTMLEditorKit;
-import java.awt.Insets;
-import javax.swing.JToolBar;
-import javax.swing.Box;
-import java.awt.ScrollPane;
-import java.awt.Canvas;
-import java.awt.FlowLayout;
-import javax.swing.JMenu;
-import javax.swing.SwingConstants;
-import javax.swing.JPopupMenu;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JMenuItem;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.ListSelectionModel;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-import javax.swing.JSplitPane;
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Color;
-import java.awt.Dimension;
+import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JToolBar;
+import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.html.HTMLEditorKit;
+
+import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 public class Builder extends JFrame {
 
@@ -129,9 +120,15 @@ public class Builder extends JFrame {
 				"Logo", "Name"
 			}
 		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -4543429473939562015L;
+			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] {
 				Object.class, String.class
 			};
+			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
