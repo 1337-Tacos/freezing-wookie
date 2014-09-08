@@ -28,6 +28,7 @@ import javax.swing.text.html.HTMLEditorKit;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
+import core.MCPackage;
 import core.Manager;
 
 public class Builder extends JFrame {
@@ -40,10 +41,12 @@ public class Builder extends JFrame {
 	private JToolBar toolBar;
 	private JTable modTable;
 	
-	public String html = DescriptionGenerator.generateDescription(null);
+	public String html = "";
 	
 	public Builder(Manager man)
 	{
+		Vector<MCPackage> packs = man.getAllPackages();
+		html = DescriptionGenerator.generateDescription(packs.get(0));
 
 		this.setTitle("Freezing-Wookie-test");
 		this.setSize(1200, 720);
