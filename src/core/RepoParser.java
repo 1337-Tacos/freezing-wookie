@@ -41,7 +41,7 @@ public abstract class RepoParser {
 		BufferedReader br = new BufferedReader(new StringReader(page));
 		String line;
 
-		MCPackage curPack = new MCPackage();
+		MCPackage curPack = new MCPackage(repo);
 		Vector<MCPackage> packs = new Vector<MCPackage>();
 
 		while ((line = br.readLine()) != null) {
@@ -53,7 +53,7 @@ public abstract class RepoParser {
 					packs.add(curPack);
 				else
 					System.out.println("a Package in " + repo.listName + " did not supply sufficient information.");
-				curPack = new MCPackage();
+				curPack = new MCPackage(repo);
 				break;
 			//Non-blank Line
 			default:

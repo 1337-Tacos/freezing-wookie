@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class MCPackage {
 
+	private Repository parent;
+
 	/**
 	 * The uniqueID (shortname) of the mod.  Analogous to Linux package names.
 	 * Should not include any spaces, underscores, or special characters.
@@ -53,8 +55,8 @@ public class MCPackage {
 	protected String homePage;
 	protected String Description = "";
 
-	MCPackage() {
-		
+	MCPackage(Repository parent) {
+		this.parent = parent;
 	}
 
 	/**
@@ -64,7 +66,9 @@ public class MCPackage {
 	 * @param version the version this package is on
 	 * @param size the size (in bytes) which the mod will consume.
 	 */
-	MCPackage(String id, String name, String version, String file) {
+	MCPackage(Repository parent, String id, String name, String version, String file) {
+		this.parent = parent;
+
 		this.packageID = id;
 		this.name = name;
 		this.version = version;
@@ -75,6 +79,22 @@ public class MCPackage {
 
 	public String getDownloadLink() {
 		return "packages/" + fileName;
+	}
+
+	public Repository getParent() {
+		return this.parent;
+	}
+
+	public String getID() {
+		return this.packageID;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public String getDescription() {
+		return this.Description;
 	}
 
 }
