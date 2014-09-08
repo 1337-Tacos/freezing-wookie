@@ -2,7 +2,6 @@ package core;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import gui.Builder;
 
@@ -16,6 +15,9 @@ public class Launch {
 
 			@Override
 			public void run() {
+				
+				Repository repo = new Repository("lol", "http://hydra.13-thirtyseven.com/");
+				repo.updateList();
 				
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
