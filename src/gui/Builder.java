@@ -31,6 +31,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+import javax.swing.JSplitPane;
+import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.Dimension;
 
 public class Builder extends JFrame {
 
@@ -48,26 +52,6 @@ public class Builder extends JFrame {
 		this.setSize(1200, 720);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
-		
-		toolBar = new JToolBar();
-		toolBar.setFloatable(false);
-		getContentPane().add(toolBar, BorderLayout.NORTH);
-		
-		JMenu mnFile = new JMenu("File");
-		mnFile.setHorizontalAlignment(SwingConstants.TRAILING);
-		toolBar.add(mnFile);
-		
-		JPopupMenu popupMenu = new JPopupMenu();
-		addPopup(mnFile, popupMenu);
-		
-		JMenuItem menuItem = new JMenuItem("New menu item");
-		popupMenu.add(menuItem);
-		
-		JMenu mnHelp = new JMenu("Help");
-		toolBar.add(mnHelp);
-		
-		JPopupMenu popupMenu_1 = new JPopupMenu();
-		addPopup(mnHelp, popupMenu_1);
 		
 		JScrollPane listScrollPane = new JScrollPane();
 		listScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -160,6 +144,36 @@ public class Builder extends JFrame {
 		detailsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		detailsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		getContentPane().add(detailsScrollPane, BorderLayout.CENTER);
+		
+		JSplitPane splitPane_1 = new JSplitPane();
+		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitPane_1.setEnabled(false);
+		getContentPane().add(splitPane_1, BorderLayout.NORTH);
+		
+		toolBar = new JToolBar();
+		splitPane_1.setLeftComponent(toolBar);
+		toolBar.setFloatable(false);
+		
+		JMenu mnFile = new JMenu("File");
+		mnFile.setHorizontalAlignment(SwingConstants.TRAILING);
+		toolBar.add(mnFile);
+		
+		JPopupMenu popupMenu = new JPopupMenu();
+		addPopup(mnFile, popupMenu);
+		
+		JMenuItem menuItem = new JMenuItem("New menu item");
+		popupMenu.add(menuItem);
+		
+		JMenu mnHelp = new JMenu("Help");
+		toolBar.add(mnHelp);
+		
+		JPopupMenu popupMenu_1 = new JPopupMenu();
+		addPopup(mnHelp, popupMenu_1);
+		
+		JLabel lblLargeAreaFor = new JLabel("Large Area For Title and stuff.");
+		lblLargeAreaFor.setPreferredSize(new Dimension(146, 100));
+		lblLargeAreaFor.setBackground(Color.ORANGE);
+		splitPane_1.setRightComponent(lblLargeAreaFor);
 		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{toolBar, mnFile, popupMenu, menuItem, mnHelp, popupMenu_1, table, listScrollPane}));
 		
 		this.initComp();
