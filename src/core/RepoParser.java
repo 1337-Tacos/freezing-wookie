@@ -100,7 +100,7 @@ public abstract class RepoParser {
 			pack.size = Integer.parseInt(line[1]);
 			break;
 		case "Tags":
-			dealTags(line[1]);
+			dealTags(line[1], pack);
 			break;
 		case "Depends":
 			//TODO:  add depends parsing
@@ -137,9 +137,16 @@ public abstract class RepoParser {
 		}
 	}
 
-	//TODO:  dealTags
-	private static void dealTags(String line) {
-		
+	/**
+	 * Handles a request to parse a comma separated list of tags
+	 * @param tags the content string containing only a comma and space separated list of tags
+	 * @param pack the MCPackage which to add the tags to
+	 */
+	private static void dealTags(String tags, MCPackage pack) {
+		String[] parts = tags.split("\\,\\ ");
+		for (int i = 0; i < parts.length; i++) {
+			pack.tags.add(parts[i]);
+		}
 	}
 
 	//TODO:  dealDescription
