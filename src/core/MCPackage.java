@@ -36,7 +36,7 @@ public class MCPackage {
 	 */
 	protected ArrayList<String> tags = new ArrayList<String>();
 
-	//TODO: Discuss.  Does a string list cover it?  What about version Numbers?
+	//TODO: Decide how to store not only mods, but versions...
 	protected ArrayList<String> depends;
 	protected ArrayList<String> suggests = new ArrayList<String>();
 	protected ArrayList<String> conflicts;
@@ -53,8 +53,8 @@ public class MCPackage {
 	protected String homePage;
 	protected String Description = "";
 
-	//TODO: minimum constructor
 	MCPackage() {
+		
 	}
 
 	/**
@@ -64,15 +64,12 @@ public class MCPackage {
 	 * @param version the version this package is on
 	 * @param size the size (in bytes) which the mod will consume.
 	 */
-	MCPackage(String id, String name, int version, int size) {
-		
+	MCPackage(String id, String name, String version, String file) {
+		this.packageID = id;
+		this.name = name;
+		this.version = version;
+		this.fileName = file;
 	}
-
-	//TODO: normal constructor (common fields)
-	MCPackage(String id, int version, String name, String shortDesc, int size, String[] tags, String imageLink) {
-		
-	}
-
 
 	//Get standard package details
 

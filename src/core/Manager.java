@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
-//TODO:  re-factor class to have a more useful name.
 public class Manager {
 
 	private List<Repository> repoList;
 
-	//TODO:  Manager Constructor
+	Manager() {
+		
+	}
 
 	/**
 	 * Adds a new repository to track.
@@ -19,7 +20,6 @@ public class Manager {
 	 * @param url the raw url to the repository's home dir
 	 */
 	public void addRepo(String name, String url) {
-		//TODO:  update this, along with Repository constructor
 		Repository repo = new Repository(name, url);
 		repoList.add(repo);
 	}

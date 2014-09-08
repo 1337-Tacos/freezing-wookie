@@ -75,7 +75,6 @@ public class PackageList {
 	}
 
 	//Returns an array of package Objects.
-	//TODO: discuss.  objects?  names?  details?
 	public Vector<MCPackage> getPackageList() {
 		return this.packageList;
 	}
