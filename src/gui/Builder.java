@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -27,6 +28,8 @@ import javax.swing.text.html.HTMLEditorKit;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
+import core.Manager;
+
 public class Builder extends JFrame {
 
 	private static final long serialVersionUID = 6865530991775121331L;
@@ -35,9 +38,12 @@ public class Builder extends JFrame {
 	public JButton remove, update;
 	public Vector<String> testV;
 	private JToolBar toolBar;
-	private JTable table;
+	private JTable modTable;
 	
-	public Builder(){
+	public String html = DescriptionGenerator.generateDescription(null);
+	
+	public Builder(Manager man)
+	{
 
 		this.setTitle("Freezing-Wookie-test");
 		this.setSize(1200, 720);
@@ -49,11 +55,11 @@ public class Builder extends JFrame {
 		listScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		getContentPane().add(listScrollPane, BorderLayout.WEST);
 		
-		table = new JTable();
-		table.setSurrendersFocusOnKeystroke(true);
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setFillsViewportHeight(true);
-		table.setModel(new DefaultTableModel(
+		modTable = new JTable();
+		modTable.setSurrendersFocusOnKeystroke(true);
+		modTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		modTable.setFillsViewportHeight(true);
+		modTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"", "dfdf"},
 				{"", "dfd"},
@@ -133,22 +139,26 @@ public class Builder extends JFrame {
 				return columnTypes[columnIndex];
 			}
 		});
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(1).setResizable(false);
-		listScrollPane.setViewportView(table);
+		modTable.getColumnModel().getColumn(0).setResizable(false);
+		modTable.getColumnModel().getColumn(1).setResizable(false);
+		listScrollPane.setViewportView(modTable);
 		
 		JScrollPane detailsScrollPane = new JScrollPane();
 		detailsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		detailsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		getContentPane().add(detailsScrollPane, BorderLayout.CENTER);
 		
-		JSplitPane splitPane_1 = new JSplitPane();
-		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		splitPane_1.setEnabled(false);
-		getContentPane().add(splitPane_1, BorderLayout.NORTH);
+		JEditorPane descriptionHTMLPane = new JEditorPane("text/html",html);
+		descriptionHTMLPane.setEditable(false);
+		detailsScrollPane.setViewportView(descriptionHTMLPane);
+		
+		JSplitPane topSplitPane = new JSplitPane();
+		topSplitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		topSplitPane.setEnabled(false);
+		getContentPane().add(topSplitPane, BorderLayout.NORTH);
 		
 		toolBar = new JToolBar();
-		splitPane_1.setLeftComponent(toolBar);
+		topSplitPane.setLeftComponent(toolBar);
 		toolBar.setFloatable(false);
 		
 		JMenu mnFile = new JMenu("File");
@@ -170,8 +180,8 @@ public class Builder extends JFrame {
 		JLabel lblLargeAreaFor = new JLabel("Large Area For Title and stuff.");
 		lblLargeAreaFor.setPreferredSize(new Dimension(146, 100));
 		lblLargeAreaFor.setBackground(Color.ORANGE);
-		splitPane_1.setRightComponent(lblLargeAreaFor);
-		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{toolBar, mnFile, popupMenu, menuItem, mnHelp, popupMenu_1, table, listScrollPane}));
+		topSplitPane.setRightComponent(lblLargeAreaFor);
+		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{toolBar, mnFile, popupMenu, menuItem, mnHelp, popupMenu_1, modTable, listScrollPane}));
 		
 		this.initComp();
 		this.addComponents();
