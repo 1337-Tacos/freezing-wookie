@@ -7,7 +7,7 @@ import java.util.Vector;
 
 public class Manager {
 
-	private Vector<Repository> repoList;
+	private Vector<Repository> repoList = new Vector<Repository>();
 
 	Manager() {
 		
