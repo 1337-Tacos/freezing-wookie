@@ -49,7 +49,10 @@ public abstract class RepoParser {
 			//Blank Line.  End of this package.  Load next.
 			case "":
 				System.out.println("Blank Line.  Loading next package");
-				packs.add(curPack);
+				if (checkValidity(curPack))
+					packs.add(curPack);
+				else
+					System.out.println("a Package in " + repo.listName + " did not supply sufficient information.");
 				curPack = new MCPackage();
 				break;
 			//Non-blank Line
@@ -65,7 +68,10 @@ public abstract class RepoParser {
 			}
 		}
 		//Save the last pack
-		packs.add(curPack);
+		if (checkValidity(curPack))
+			packs.add(curPack);
+		else
+			System.out.println("a Package in " + repo.listName + " did not supply sufficient information.");
 
 		return packs;
 	}
@@ -139,5 +145,13 @@ public abstract class RepoParser {
 	//TODO:  dealDescription
 	private static void dealDescription(String line) {
 		
+	}
+
+	private static boolean checkValidity(MCPackage pack) {
+		if (pack.fileName == null || pack.version == null)
+			return false;
+		if (pack.name == null || pack.packageID == null)
+			return false;
+		return true;
 	}
 }

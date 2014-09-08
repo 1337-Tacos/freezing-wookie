@@ -22,7 +22,7 @@ public class MCPackage {
 	 * The short Description for the mod.
 	 * Should be less than 50 characters long, or it may be cut off.
 	 */
-	protected String shortDesc;
+	protected String shortDesc = "";
 	/**
 	 * The size (in bytes) which the mod will consume.
 	 * Technically should include the config file, and anything else the mod will download
@@ -48,10 +48,10 @@ public class MCPackage {
 	protected String md5Sum;
 	protected String fileName;
 
-	protected String author;
+	protected String author = "";
 	protected String maintainer;
 	protected String homePage;
-	protected String Description;
+	protected String Description = "";
 
 	//TODO: minimum constructor
 	MCPackage() {
