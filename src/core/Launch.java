@@ -2,7 +2,6 @@ package core;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import gui.Builder;
 
