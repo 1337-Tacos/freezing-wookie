@@ -1,8 +1,6 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -16,7 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.text.html.HTMLEditorKit;
 
 public class Builder extends JFrame {
-	
+
+	private static final long serialVersionUID = 6865530991727121331L;
 	public JList<String> modList, installList, totalDep, selectionDep;
 	public HTMLEditorKit modInfo;
 	public JButton build, add, remove;

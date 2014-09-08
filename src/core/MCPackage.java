@@ -1,9 +1,11 @@
 package core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MCPackage {
+public class MCPackage implements Serializable {
 
+	private static final long serialVersionUID = 6390833776759776304L;
 	private Repository parent;
 
 	/**
