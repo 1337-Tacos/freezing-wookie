@@ -151,7 +151,7 @@ public abstract class RepoParser {
 
 	//TODO:  dealDescription
 	private static void dealDescription(String line) {
-		
+		System.out.println("lol lol lol this is a long paragraph or something.  at least long enough to test word-wrapping.  lol. \n hello");
 	}
 
 	private static void dealSuggest(String suggests, MCPackage pack) {
