@@ -37,15 +37,19 @@ public class Builder extends JFrame {
 	public JButton remove, update;
 	public Vector<String> testV;
 	private JTable modTable;
+	/**
+	 * displayTable is the table of objects which is responsible for showing the packages in the GUI<br>
+	 * element 0 is the image object which is the logo for each package<br>
+	 * element 1 is the Human-Readable name of the mod to display in the second column<br>
+	 * element 2 is packageID of the mod.  This is used to allow us to find the proper package again.
+	 */
 	private Object[][] displayTable = new Object[1000][3];
-	
-	public String html = "";
 	JEditorPane descriptionHTMLPane;
+	ArrayList<MCPackage> packs;
 	
 	public Builder(final Manager man)
 	{
-		ArrayList<MCPackage> packs = man.getAllPackages();
-		html = DescriptionGenerator.generateDescription(packs.get(0));
+		packs = man.getAllPackages();
 		
 		int i = 0;
 		for (MCPackage pack : packs) {
@@ -104,7 +108,7 @@ public class Builder extends JFrame {
 		
 		descriptionHTMLPane = new JEditorPane();
 		descriptionHTMLPane.setContentType("text/html");
-		descriptionHTMLPane.setText(html);
+		descriptionHTMLPane.setText( DescriptionGenerator.generateDescription(man.getPackage("Logistics_Pipes")) );
 		descriptionHTMLPane.setEditable(false);
 		detailsScrollPane.setViewportView(descriptionHTMLPane);
 		
@@ -139,6 +143,7 @@ public class Builder extends JFrame {
 		menuBar.add(mnOptions);
 		
 		JMenu mnHelp = new JMenu("Help");
+		mnHelp.setEnabled(false);
 		menuBar.add(mnHelp);
 		
 		JMenuItem mntmHelp = new JMenuItem("Help");

@@ -108,4 +108,8 @@ public class MCPackage implements Serializable {
 		return this.Description;
 	}
 
+	public String getShortDesc() {
+		return this.shortDesc;
+	}
+
 }

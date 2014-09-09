@@ -13,6 +13,11 @@ public abstract class DescriptionGenerator {
 		html += "<img src=" + pack.getParent().listURL + "images/" + pack.getID() + " />";
 		html += pack.getName();
 		html += "</font><hr/>";
+		String shortDesc = pack.getShortDesc();
+		if (shortDesc != "") {
+			html += shortDesc;
+			html += "<hr/>";
+		}
 		html += pack.getDescription();
 		//html += other details and stuff
 		html += "</body></html>";
