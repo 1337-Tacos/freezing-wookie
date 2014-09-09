@@ -20,7 +20,6 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.html.HTMLEditorKit;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
@@ -35,11 +34,10 @@ import java.awt.event.MouseEvent;
 public class Builder extends JFrame {
 
 	private static final long serialVersionUID = 6865530991775121331L;
-	public HTMLEditorKit modInfo;
 	public JButton remove, update;
 	public Vector<String> testV;
 	private JTable modTable;
-	private Object[][] displayTable = new Object[1000][2];
+	private Object[][] displayTable = new Object[1000][3];
 	
 	public String html = "";
 	JEditorPane descriptionHTMLPane;
@@ -50,8 +48,10 @@ public class Builder extends JFrame {
 		html = DescriptionGenerator.generateDescription(packs.get(0));
 		
 		int i = 0;
-		for (MCPackage pack : man.getAllPackages()) {
-			this.displayTable[i][1] = pack.getID();
+		for (MCPackage pack : packs) {
+			//this.displayTable[i][0] = pack.getImage();
+			this.displayTable[i][1] = pack.getName();
+			this.displayTable[i][2] = pack.getID();
 			i++;
 		}
 
@@ -71,7 +71,7 @@ public class Builder extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if (arg0.getClickCount() == 1) {
 					JTable target = (JTable)arg0.getSource();
-					MCPackage mod = man.getPackage((String) displayTable[target.getSelectedRow()][1]);
+					MCPackage mod = man.getPackage((String) displayTable[target.getSelectedRow()][2]);
 					descriptionHTMLPane.setText(DescriptionGenerator.generateDescription(mod));
 				}
 			}
@@ -158,9 +158,6 @@ public class Builder extends JFrame {
 	private void initComp(){
 		this.update = new JButton("Add");
 		this.remove = new JButton("Remove");
-		
-		this.modInfo = new HTMLEditorKit();
-
 	}
 	
 	private void addComponents(){
