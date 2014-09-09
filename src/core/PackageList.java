@@ -1,5 +1,6 @@
 package core;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
@@ -16,7 +17,7 @@ public class PackageList {
 	/**
 	 * the actual list of packages this holds
 	 */
-	protected Vector<MCPackage> packageList = new Vector<MCPackage>();
+	protected ArrayList<MCPackage> packageList = new ArrayList<MCPackage>();
 
 	/**
 	 * the User-friendly name of this list of packages
@@ -75,7 +76,7 @@ public class PackageList {
 	}
 
 	//Returns an array of package Objects.
-	public Vector<MCPackage> getPackageList() {
+	public ArrayList<MCPackage> getPackageList() {
 		return this.packageList;
 	}
 

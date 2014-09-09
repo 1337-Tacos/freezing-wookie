@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public abstract class RepoParser {
@@ -37,12 +38,12 @@ public abstract class RepoParser {
 	 * @return the Vector which contains all the packages parsed from the html string
 	 * @throws IOException
 	 */
-	protected static Vector<MCPackage> parseUpdate(String page, Repository repo) throws IOException {
+	protected static ArrayList<MCPackage> parseUpdate(String page, Repository repo) throws IOException {
 		BufferedReader br = new BufferedReader(new StringReader(page));
 		String line;
 
 		MCPackage curPack = new MCPackage(repo);
-		Vector<MCPackage> packs = new Vector<MCPackage>();
+		ArrayList<MCPackage> packs = new ArrayList<MCPackage>();
 
 		while ((line = br.readLine()) != null) {
 			switch (line) {
@@ -157,14 +158,15 @@ public abstract class RepoParser {
 	private static void dealSuggest(String suggests, MCPackage pack) {
 		String[] parts = suggests.split("\\,\\ ");
 		for (int i = 0; i < parts.length; i++) {
-			pack.suggests.add(parts[i]);
+			//Should reference it then add one to it.
+			pack.suggests.add(new ModRef(parts[i++], parts[i]));
 		}
 	}
 	
 	private static void dealReplace(String replaces, MCPackage pack) {
 		String[] parts = replaces.split("\\,\\ ");
 		for (int i = 0; i < parts.length; i++) {
-			pack.replaces.add(parts[i]);
+			pack.replaces.add(new ModRef(parts[i++], parts[i]));
 		}
 	}
 
