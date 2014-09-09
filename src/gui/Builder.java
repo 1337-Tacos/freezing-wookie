@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -14,15 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
-import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.html.HTMLEditorKit;
 
@@ -38,7 +34,6 @@ public class Builder extends JFrame {
 	public HTMLEditorKit modInfo;
 	public JButton remove, update;
 	public Vector<String> testV;
-	private JToolBar toolBar;
 	private JTable modTable;
 	
 	public String html = "";
@@ -64,10 +59,10 @@ public class Builder extends JFrame {
 		modTable.setFillsViewportHeight(true);
 		modTable.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"", "dfdf"},
-				{"", "dfd"},
-				{"", "dfd"},
-				{"", "fdfd"},
+				{null, "dfdf"},
+				{null, "dfd"},
+				{null, "dfd"},
+				{null, "fdfd"},
 				{null, null},
 				{null, null},
 				{null, null},
@@ -129,17 +124,12 @@ public class Builder extends JFrame {
 				"Logo", "Name"
 			}
 		) {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = -4543429473939562015L;
-			@SuppressWarnings("rawtypes")
-			Class[] columnTypes = new Class[] {
-				Object.class, String.class
+			private static final long serialVersionUID = 4464075965532478875L;
+			boolean[] columnEditables = new boolean[] {
+				false, false
 			};
-			@SuppressWarnings({ "unchecked", "rawtypes" })
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
 			}
 		});
 		modTable.getColumnModel().getColumn(0).setResizable(false);
@@ -160,31 +150,29 @@ public class Builder extends JFrame {
 		topSplitPane.setEnabled(false);
 		getContentPane().add(topSplitPane, BorderLayout.NORTH);
 		
-		toolBar = new JToolBar();
-		topSplitPane.setLeftComponent(toolBar);
-		toolBar.setFloatable(false);
-		
-		JMenu mnFile = new JMenu("File");
-		mnFile.setHorizontalAlignment(SwingConstants.TRAILING);
-		toolBar.add(mnFile);
-		
-		JPopupMenu popupMenu = new JPopupMenu();
-		addPopup(mnFile, popupMenu);
-		
-		JMenuItem menuItem = new JMenuItem("New menu item");
-		popupMenu.add(menuItem);
-		
-		JMenu mnHelp = new JMenu("Help");
-		toolBar.add(mnHelp);
-		
-		JPopupMenu popupMenu_1 = new JPopupMenu();
-		addPopup(mnHelp, popupMenu_1);
-		
 		JLabel lblLargeAreaFor = new JLabel("Large Area For Title and stuff.");
 		lblLargeAreaFor.setPreferredSize(new Dimension(146, 100));
 		lblLargeAreaFor.setBackground(Color.ORANGE);
 		topSplitPane.setRightComponent(lblLargeAreaFor);
-		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{toolBar, mnFile, popupMenu, menuItem, mnHelp, popupMenu_1, modTable, listScrollPane}));
+		
+		JMenuBar menuBar = new JMenuBar();
+		topSplitPane.setLeftComponent(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		JMenu mnOptions = new JMenu("Options");
+		menuBar.add(mnOptions);
+		
+		JMenu mnHelp = new JMenu("Help");
+		menuBar.add(mnHelp);
+		
+		JMenuItem mntmHelp = new JMenuItem("Help");
+		mnHelp.add(mntmHelp);
+		
+		JMenuItem mntmSupport = new JMenuItem("Support Us");
+		mnHelp.add(mntmSupport);
+		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{modTable, listScrollPane}));
 		
 		this.initComp();
 		this.addComponents();
@@ -203,22 +191,5 @@ public class Builder extends JFrame {
 	
 	private void addComponents(){
 		
-	}
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
 	}
 }
