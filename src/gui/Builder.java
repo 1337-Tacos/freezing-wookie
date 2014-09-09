@@ -39,7 +39,7 @@ public class Builder extends JFrame {
 	public JButton remove, update;
 	public Vector<String> testV;
 	private JTable modTable;
-	private Object[][] displayTable = new Object[2][1000];
+	private Object[][] displayTable = new Object[1000][2];
 	
 	public String html = "";
 	
