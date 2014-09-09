@@ -1,5 +1,6 @@
 package core;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
@@ -51,7 +52,7 @@ public class Manager {
 	 * returns a list of all packages in all Repositories.
 	 * @return an array of all packages
 	 */
-	public Vector<MCPackage> getAllPackages() {
+	public ArrayList<MCPackage> getAllPackages() {
 		return getPackageCatagory("all");
 	}
 
@@ -62,8 +63,8 @@ public class Manager {
 	 * @param cat the category which you want to return.  "all" returns all categories
 	 * @return the array with the matching packages
 	 */
-	public Vector<MCPackage> getPackageCatagory(String cat) {
-		Vector<MCPackage> finalList = new Vector<MCPackage>();
+	public ArrayList<MCPackage> getPackageCatagory(String cat) {
+		ArrayList<MCPackage> finalList = new ArrayList<MCPackage>();
 		HashMap<String,MCPackage> finalMap = new HashMap<String,MCPackage>();
 		//For each Repo...
 		for (Repository repo : this.repoList) {

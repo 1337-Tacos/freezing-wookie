@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -38,22 +39,19 @@ public class Builder extends JFrame {
 	public JButton remove, update;
 	public Vector<String> testV;
 	private JTable modTable;
-	private Object[][] displayTable = new Object[][] {
-			{null, "there"},
-			{null, "was"},
-			{null, "an"},
-			{null, "error"},
-		};
+	private Object[][] displayTable = new Object[2][1000];
 	
 	public String html = "";
 	
 	public Builder(Manager man)
 	{
-		Vector<MCPackage> packs = man.getAllPackages();
+		ArrayList<MCPackage> packs = man.getAllPackages();
 		html = DescriptionGenerator.generateDescription(packs.get(0));
 		
+		int i = 0;
 		for (MCPackage pack : man.getAllPackages()) {
-			//this.displayTable.add("", pack.getName())
+			this.displayTable[i][1] = pack.getName();
+			i++;
 		}
 
 		this.setTitle("Freezing-Wookie-test");
