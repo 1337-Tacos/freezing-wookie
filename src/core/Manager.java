@@ -96,6 +96,18 @@ public class Manager {
 		return finalList;
 	}
 
+	public MCPackage getPackage(String string) {
+		MCPackage pack = new MCPackage();
+		for (Repository repo : this.repoList) {
+			for (MCPackage i : repo.getPackageList()) {
+				if (i.packageID.equalsIgnoreCase(string) && i.version.compareTo(pack.version) > 0) {
+					pack = i;
+				}
+			}
+		}
+		return pack;
+	}
+
 	/**
 	 * Fetches all instances of a requested package
 	 * @param id the unique ID of the mod you want to find

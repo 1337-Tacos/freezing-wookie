@@ -16,7 +16,7 @@ public class MCPackage implements Serializable {
 	/**
 	 * The version number the package is currently at.
 	 */
-	protected String version;
+	protected String version = "0";
 	/**
 	 * The Human-Readable name of the mod.  This should be the actual mod name.
 	 * Can contain spaces or any printable characters.
@@ -77,6 +77,13 @@ public class MCPackage implements Serializable {
 		this.name = name;
 		this.version = version;
 		this.fileName = file;
+	}
+	
+	MCPackage() {
+		this.name = "Error- No package Matches";
+		this.fileName = "error.jar";
+		this.packageID = "error";
+		this.parent = new Repository("error", "http://error.com/");
 	}
 
 	//Get standard package details
