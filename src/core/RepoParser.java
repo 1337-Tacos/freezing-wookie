@@ -130,7 +130,7 @@ public abstract class RepoParser {
 			pack.homePage = line[1];
 			break;
 		case "Description":
-			dealDescription(line[1]);
+			dealDescription(line[1], pack);
 			break;
 		default:
 			System.out.println("Unrecognized type:" + line[0]);
@@ -150,8 +150,8 @@ public abstract class RepoParser {
 	}
 
 	//TODO:  dealDescription
-	private static void dealDescription(String line) {
-		System.out.println("lol lol lol this is a long paragraph or something.  at least long enough to test word-wrapping.  lol. \n hello");
+	private static void dealDescription(String line, MCPackage pack) {
+		pack.Description = "lol lol lol this is a long paragraph or something.  at least long enough to test word-wrapping.  lol. \n hello.  And then poop was launched out of bob's taco-cannon, which caused mary to jump off the eifel tower.  This line is waaaaaay too long to follow proper coding conventions, but it would be way too annoying for me to use like 5 lines to contain it all.";
 	}
 
 	private static void dealSuggest(String suggests, MCPackage pack) {
