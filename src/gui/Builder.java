@@ -24,8 +24,10 @@ import javax.swing.text.html.HTMLEditorKit;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
+import utilities.DescriptionGenerator;
 import core.MCPackage;
 import core.Manager;
+
 import java.awt.Font;
 
 public class Builder extends JFrame {

@@ -1,10 +1,10 @@
-package gui;
+package utilities;
 
 import core.MCPackage;
 
 public abstract class DescriptionGenerator {
 
-	protected static String generateDescription(MCPackage pack) {
+	public static String generateDescription(MCPackage pack) {
 		String html = "";
 		html += "<html><head>";
 		//head stuff goes here
