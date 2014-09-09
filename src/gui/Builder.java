@@ -26,6 +26,7 @@ import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 import core.MCPackage;
 import core.Manager;
+import java.awt.Font;
 
 public class Builder extends JFrame {
 
@@ -35,6 +36,12 @@ public class Builder extends JFrame {
 	public JButton remove, update;
 	public Vector<String> testV;
 	private JTable modTable;
+	private Object[][] displayTable = new Object[][] {
+			{null, "there"},
+			{null, "was"},
+			{null, "an"},
+			{null, "error"},
+		};
 	
 	public String html = "";
 	
@@ -42,6 +49,10 @@ public class Builder extends JFrame {
 	{
 		Vector<MCPackage> packs = man.getAllPackages();
 		html = DescriptionGenerator.generateDescription(packs.get(0));
+		
+		for (MCPackage pack : man.getAllPackages()) {
+			//this.displayTable.add("", pack.getName())
+		}
 
 		this.setTitle("Freezing-Wookie-test");
 		this.setSize(1200, 720);
@@ -58,68 +69,7 @@ public class Builder extends JFrame {
 		modTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		modTable.setFillsViewportHeight(true);
 		modTable.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, "dfdf"},
-				{null, "dfd"},
-				{null, "dfd"},
-				{null, "fdfd"},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
+			displayTable ,
 			new String[] {
 				"Logo", "Name"
 			}
@@ -151,6 +101,8 @@ public class Builder extends JFrame {
 		getContentPane().add(topSplitPane, BorderLayout.NORTH);
 		
 		JLabel lblLargeAreaFor = new JLabel("Large Area For Title and stuff.");
+		lblLargeAreaFor.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblLargeAreaFor.setForeground(Color.BLACK);
 		lblLargeAreaFor.setPreferredSize(new Dimension(146, 100));
 		lblLargeAreaFor.setBackground(Color.ORANGE);
 		topSplitPane.setRightComponent(lblLargeAreaFor);
@@ -160,6 +112,15 @@ public class Builder extends JFrame {
 		
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
+		
+		JMenuItem mntmUpdateRepositories = new JMenuItem("Update Repositories");
+		mnFile.add(mntmUpdateRepositories);
+		
+		JMenuItem mntmEditRepositories = new JMenuItem("Edit Repositories");
+		mnFile.add(mntmEditRepositories);
+		
+		JMenuItem mntmQuit = new JMenuItem("Quit");
+		mnFile.add(mntmQuit);
 		
 		JMenu mnOptions = new JMenu("Options");
 		menuBar.add(mnOptions);
