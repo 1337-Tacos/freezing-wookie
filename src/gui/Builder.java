@@ -11,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -30,11 +29,12 @@ import core.MCPackage;
 import core.Manager;
 
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Builder extends JFrame {
 
 	private static final long serialVersionUID = 6865530991775121331L;
-	public JList<String> totalDep, selectionDep;
 	public HTMLEditorKit modInfo;
 	public JButton remove, update;
 	public Vector<String> testV;
@@ -42,15 +42,16 @@ public class Builder extends JFrame {
 	private Object[][] displayTable = new Object[1000][2];
 	
 	public String html = "";
+	JEditorPane descriptionHTMLPane;
 	
-	public Builder(Manager man)
+	public Builder(final Manager man)
 	{
 		ArrayList<MCPackage> packs = man.getAllPackages();
 		html = DescriptionGenerator.generateDescription(packs.get(0));
 		
 		int i = 0;
 		for (MCPackage pack : man.getAllPackages()) {
-			this.displayTable[i][1] = pack.getName();
+			this.displayTable[i][1] = pack.getID();
 			i++;
 		}
 
@@ -65,6 +66,16 @@ public class Builder extends JFrame {
 		getContentPane().add(listScrollPane, BorderLayout.WEST);
 		
 		modTable = new JTable();
+		modTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (arg0.getClickCount() == 1) {
+					JTable target = (JTable)arg0.getSource();
+					MCPackage mod = man.getPackage((String) displayTable[target.getSelectedRow()][1]);
+					descriptionHTMLPane.setText(DescriptionGenerator.generateDescription(mod));
+				}
+			}
+		});
 		modTable.setSurrendersFocusOnKeystroke(true);
 		modTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		modTable.setFillsViewportHeight(true);
@@ -91,7 +102,9 @@ public class Builder extends JFrame {
 		detailsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		getContentPane().add(detailsScrollPane, BorderLayout.CENTER);
 		
-		JEditorPane descriptionHTMLPane = new JEditorPane("text/html",html);
+		descriptionHTMLPane = new JEditorPane();
+		descriptionHTMLPane.setContentType("text/html");
+		descriptionHTMLPane.setText(html);
 		descriptionHTMLPane.setEditable(false);
 		detailsScrollPane.setViewportView(descriptionHTMLPane);
 		
