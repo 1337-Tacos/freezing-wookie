@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
-import java.util.Vector;
 
 public class Manager {
 
-	private Vector<Repository> repoList = new Vector<Repository>();
+	private ArrayList<Repository> repoList = new ArrayList<Repository>();
 
 	Manager() {
 		
@@ -102,8 +101,8 @@ public class Manager {
 	 * @param id the unique ID of the mod you want to find
 	 * @return an array of all instances of the mod
 	 */
-	public Vector<MCPackage> getPackageOptions(String id) {
-		Vector<MCPackage> finalList = new Vector<MCPackage>();
+	public ArrayList<MCPackage> getPackageOptions(String id) {
+		ArrayList<MCPackage> finalList = new ArrayList<MCPackage>();
 		for (Repository repo : this.repoList) {
 			for (MCPackage pack : repo.getPackageList()) {
 				if (pack.packageID.equalsIgnoreCase(id))

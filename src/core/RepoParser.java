@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public abstract class RepoParser {
 
@@ -37,12 +37,12 @@ public abstract class RepoParser {
 	 * @return the Vector which contains all the packages parsed from the html string
 	 * @throws IOException
 	 */
-	protected static Vector<MCPackage> parseUpdate(String page, Repository repo) throws IOException {
+	protected static ArrayList<MCPackage> parseUpdate(String page, Repository repo) throws IOException {
 		BufferedReader br = new BufferedReader(new StringReader(page));
 		String line;
 
 		MCPackage curPack = new MCPackage(repo);
-		Vector<MCPackage> packs = new Vector<MCPackage>();
+		ArrayList<MCPackage> packs = new ArrayList<MCPackage>();
 
 		while ((line = br.readLine()) != null) {
 			switch (line) {

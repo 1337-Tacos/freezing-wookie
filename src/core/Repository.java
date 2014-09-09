@@ -1,8 +1,8 @@
 package core;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Vector;
 
 public class Repository extends PackageList {
 
@@ -27,7 +27,7 @@ public class Repository extends PackageList {
 	public boolean updateList() {
 		try {
 			String repoHtml = RepoParser.downloadRepo(this);			//Fetch URL
-			Vector<MCPackage> list = RepoParser.parseUpdate(repoHtml, this);	//Parse into separate objects
+			ArrayList<MCPackage> list = RepoParser.parseUpdate(repoHtml, this);	//Parse into separate objects
 			
 			this.packageList = list;
 			this.lastUpdated = new Date();
