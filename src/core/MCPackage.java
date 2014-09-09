@@ -44,9 +44,9 @@ public class MCPackage implements Serializable {
 	//Only one thread is building the list and after its built its static, so getting a lock is just a useless performance hit.
 	//If we absolutely have to change it there is a built in wrapper for synchronizing arrayLists.
 	protected ArrayList<ModRef> depends = new ArrayList<ModRef>();
-	protected ArrayList<ModRef> suggests = new ArrayList<ModRef>();
+	protected ArrayList<String> suggests = new ArrayList<String>();
 	protected ArrayList<ModRef> conflicts = new ArrayList<ModRef>();
-	protected ArrayList<ModRef> replaces = new ArrayList<ModRef>();
+	protected ArrayList<String> replaces = new ArrayList<String>();
 	
 	
 	//type?
