@@ -50,15 +50,7 @@ public class Builder extends JFrame {
 	public Builder(final Manager man)
 	{
 		packs = man.getAllPackages();
-		ArrayList<Object[]> arLs = new ArrayList<Object[]>();
-		for (MCPackage pack : packs) {
-			Object[] array = new Object[3];
-			//array[0] = pack.getImage();
-			array[1] = pack.getName();
-			array[2] = pack.getID();
-			arLs.add(array);
-		}
-		this.displayTable = arLs.toArray(displayTable);
+		updateList(packs);
 
 		this.setTitle("Freezing-Wookie-test");
 		this.setSize(1200, 720);
@@ -154,7 +146,6 @@ public class Builder extends JFrame {
 		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{modTable, listScrollPane}));
 		
 		this.initComp();
-		this.addComponents();
 		
 		this.setVisible(true);
 
@@ -164,8 +155,17 @@ public class Builder extends JFrame {
 		this.update = new JButton("Add");
 		this.remove = new JButton("Remove");
 	}
-	
-	private void addComponents(){
-		
+
+	private void updateList(ArrayList<MCPackage> packs) {
+		ArrayList<Object[]> arLs = new ArrayList<Object[]>();
+		for (MCPackage pack : packs) {
+			Object[] array = new Object[3];
+			//TODO:  array[0] = pack.getImage();
+			array[1] = pack.getName();
+			array[2] = pack.getID();
+			arLs.add(array);
+		}
+		this.displayTable = arLs.toArray(displayTable);
 	}
+
 }
