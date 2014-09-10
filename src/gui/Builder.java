@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -21,8 +20,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-
 import utilities.DescriptionGenerator;
 import core.MCPackage;
 import core.Manager;
@@ -30,6 +27,15 @@ import core.Manager;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JPanel;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+
+import javax.swing.BoxLayout;
+import javax.swing.JTextField;
+import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
 
 public class Builder extends JFrame {
 
@@ -46,7 +52,9 @@ public class Builder extends JFrame {
 	private Object[][] displayTable = new Object[1][3];
 	JEditorPane descriptionHTMLPane;
 	ArrayList<MCPackage> packs;
+	private JTextField txtSearchBox;
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Builder(final Manager man)
 	{
 		packs = man.getAllPackages();
@@ -57,10 +65,15 @@ public class Builder extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
-		JScrollPane listScrollPane = new JScrollPane();
-		listScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		listScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		getContentPane().add(listScrollPane, BorderLayout.WEST);
+		JSplitPane leftSplitPane = new JSplitPane();
+		leftSplitPane.setEnabled(false);
+		leftSplitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		getContentPane().add(leftSplitPane, BorderLayout.WEST);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		leftSplitPane.setRightComponent(scrollPane);
 		
 		modTable = new JTable();
 		modTable.addMouseListener(new MouseAdapter() {
@@ -92,7 +105,24 @@ public class Builder extends JFrame {
 		});
 		modTable.getColumnModel().getColumn(0).setResizable(false);
 		modTable.getColumnModel().getColumn(1).setResizable(false);
-		listScrollPane.setViewportView(modTable);
+		scrollPane.setViewportView(modTable);
+		
+		JPanel panel = new JPanel();
+		leftSplitPane.setLeftComponent(panel);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"All", "Technology", "Magic", "Tacos", "Nuclear Bombs", "Atomic Dogs", "Radioactive Windmills"}));
+		panel.add(comboBox);
+		
+		JCheckBox chckbxLaunchMissiles = new JCheckBox("Launch Missiles");
+		panel.add(chckbxLaunchMissiles);
+		
+		txtSearchBox = new JTextField();
+		txtSearchBox.setHorizontalAlignment(SwingConstants.CENTER);
+		txtSearchBox.setText("Search Box");
+		panel.add(txtSearchBox);
+		txtSearchBox.setColumns(10);
 		
 		JScrollPane detailsScrollPane = new JScrollPane();
 		detailsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -143,7 +173,6 @@ public class Builder extends JFrame {
 		
 		JMenuItem mntmSupport = new JMenuItem("Support Us");
 		mnHelp.add(mntmSupport);
-		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{modTable, listScrollPane}));
 		
 		this.initComp();
 		
@@ -167,5 +196,4 @@ public class Builder extends JFrame {
 		}
 		this.displayTable = arLs.toArray(displayTable);
 	}
-
 }
