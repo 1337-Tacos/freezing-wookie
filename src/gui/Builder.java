@@ -111,6 +111,9 @@ public class Builder extends JFrame {
 		leftSplitPane.setLeftComponent(panel);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		
+		JLabel lblCatagory = new JLabel("Catagory:");
+		panel.add(lblCatagory);
+		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"All", "Technology", "Magic", "Tacos", "Nuclear Bombs", "Atomic Dogs", "Radioactive Windmills"}));
 		panel.add(comboBox);
@@ -141,7 +144,7 @@ public class Builder extends JFrame {
 		getContentPane().add(topSplitPane, BorderLayout.NORTH);
 		
 		JLabel lblLargeAreaFor = new JLabel("Large Area For Title and stuff.");
-		lblLargeAreaFor.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblLargeAreaFor.setFont(new Font("Comic Sans MS", Font.PLAIN, 32));
 		lblLargeAreaFor.setForeground(Color.BLACK);
 		lblLargeAreaFor.setPreferredSize(new Dimension(146, 100));
 		lblLargeAreaFor.setBackground(Color.ORANGE);
