@@ -43,21 +43,22 @@ public class Builder extends JFrame {
 	 * element 1 is the Human-Readable name of the mod to display in the second column<br>
 	 * element 2 is packageID of the mod.  This is used to allow us to find the proper package again.
 	 */
-	private Object[][] displayTable = new Object[1000][3];
+	private Object[][] displayTable = new Object[1][3];
 	JEditorPane descriptionHTMLPane;
 	ArrayList<MCPackage> packs;
 	
 	public Builder(final Manager man)
 	{
 		packs = man.getAllPackages();
-		
-		int i = 0;
+		ArrayList<Object[]> arLs = new ArrayList<Object[]>();
 		for (MCPackage pack : packs) {
-			//this.displayTable[i][0] = pack.getImage();
-			this.displayTable[i][1] = pack.getName();
-			this.displayTable[i][2] = pack.getID();
-			i++;
+			Object[] array = new Object[3];
+			//array[0] = pack.getImage();
+			array[1] = pack.getName();
+			array[2] = pack.getID();
+			arLs.add(array);
 		}
+		this.displayTable = arLs.toArray(displayTable);
 
 		this.setTitle("Freezing-Wookie-test");
 		this.setSize(1200, 720);
@@ -143,7 +144,6 @@ public class Builder extends JFrame {
 		menuBar.add(mnOptions);
 		
 		JMenu mnHelp = new JMenu("Help");
-		mnHelp.setEnabled(false);
 		menuBar.add(mnHelp);
 		
 		JMenuItem mntmHelp = new JMenuItem("Help");
