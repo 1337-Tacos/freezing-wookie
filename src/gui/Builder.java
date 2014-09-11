@@ -122,6 +122,12 @@ public class Builder extends JFrame {
 		searchPanel.add(chckbxLaunchMissiles);
 		
 		txtSearchBox = new JTextField();
+		txtSearchBox.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtSearchBox.setText("");
+			}
+		});
 		txtSearchBox.setHorizontalAlignment(SwingConstants.CENTER);
 		txtSearchBox.setText("Type To Search");
 		searchPanel.add(txtSearchBox);
@@ -173,8 +179,14 @@ public class Builder extends JFrame {
 		JPanel actionButtonPane = new JPanel();
 		rightPanel.add(actionButtonPane, BorderLayout.SOUTH);
 		
-		JButton installButton = new JButton("New button");
+		JButton installButton = new JButton("Install");
 		actionButtonPane.add(installButton);
+		
+		JButton btnUpdate = new JButton("Update");
+		actionButtonPane.add(btnUpdate);
+		
+		JButton btnRemove = new JButton("Remove");
+		actionButtonPane.add(btnRemove);
 		
 		JScrollPane detailsScrollPanescrollPane_1 = new JScrollPane();
 		rightPanel.add(detailsScrollPanescrollPane_1, BorderLayout.CENTER);
