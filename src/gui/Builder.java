@@ -70,10 +70,10 @@ public class Builder extends JFrame {
 		leftSplitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(leftSplitPane, BorderLayout.WEST);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		leftSplitPane.setRightComponent(scrollPane);
+		JScrollPane modScrollPane = new JScrollPane();
+		modScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		modScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		leftSplitPane.setRightComponent(modScrollPane);
 		
 		modTable = new JTable();
 		modTable.addMouseListener(new MouseAdapter() {
@@ -105,38 +105,27 @@ public class Builder extends JFrame {
 		});
 		modTable.getColumnModel().getColumn(0).setResizable(false);
 		modTable.getColumnModel().getColumn(1).setResizable(false);
-		scrollPane.setViewportView(modTable);
+		modScrollPane.setViewportView(modTable);
 		
-		JPanel panel = new JPanel();
-		leftSplitPane.setLeftComponent(panel);
-		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+		JPanel searchPanel = new JPanel();
+		leftSplitPane.setLeftComponent(searchPanel);
+		searchPanel.setLayout(new BoxLayout(searchPanel, BoxLayout.X_AXIS));
 		
 		JLabel lblCatagory = new JLabel("Catagory:");
-		panel.add(lblCatagory);
+		searchPanel.add(lblCatagory);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"All", "Technology", "Magic", "Tacos", "Nuclear Bombs", "Atomic Dogs", "Radioactive Windmills"}));
-		panel.add(comboBox);
+		searchPanel.add(comboBox);
 		
 		JCheckBox chckbxLaunchMissiles = new JCheckBox("Launch Missiles");
-		panel.add(chckbxLaunchMissiles);
+		searchPanel.add(chckbxLaunchMissiles);
 		
 		txtSearchBox = new JTextField();
 		txtSearchBox.setHorizontalAlignment(SwingConstants.CENTER);
-		txtSearchBox.setText("Search Box");
-		panel.add(txtSearchBox);
+		txtSearchBox.setText("Type To Search");
+		searchPanel.add(txtSearchBox);
 		txtSearchBox.setColumns(10);
-		
-		JScrollPane detailsScrollPane = new JScrollPane();
-		detailsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		detailsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		getContentPane().add(detailsScrollPane, BorderLayout.CENTER);
-		
-		descriptionHTMLPane = new JEditorPane();
-		descriptionHTMLPane.setContentType("text/html");
-		descriptionHTMLPane.setText( DescriptionGenerator.generateDescription(man.getPackage("Logistics_Pipes")) );
-		descriptionHTMLPane.setEditable(false);
-		detailsScrollPane.setViewportView(descriptionHTMLPane);
 		
 		JSplitPane topSplitPane = new JSplitPane();
 		topSplitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -176,6 +165,25 @@ public class Builder extends JFrame {
 		
 		JMenuItem mntmSupport = new JMenuItem("Support Us");
 		mnHelp.add(mntmSupport);
+		
+		JPanel rightPanel = new JPanel();
+		getContentPane().add(rightPanel, BorderLayout.CENTER);
+		rightPanel.setLayout(new BorderLayout(0, 0));
+		
+		JPanel actionButtonPane = new JPanel();
+		rightPanel.add(actionButtonPane, BorderLayout.SOUTH);
+		
+		JButton installButton = new JButton("New button");
+		actionButtonPane.add(installButton);
+		
+		JScrollPane detailsScrollPanescrollPane_1 = new JScrollPane();
+		rightPanel.add(detailsScrollPanescrollPane_1, BorderLayout.CENTER);
+		
+		descriptionHTMLPane = new JEditorPane();
+		descriptionHTMLPane.setContentType("text/html");
+		descriptionHTMLPane.setText( DescriptionGenerator.generateDescription(man.getPackage("Logistics_Pipes")) );
+		descriptionHTMLPane.setEditable(false);
+		detailsScrollPanescrollPane_1.setViewportView(descriptionHTMLPane);
 		
 		this.initComp();
 		
