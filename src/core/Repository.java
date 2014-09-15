@@ -18,7 +18,7 @@ public class Repository extends PackageList {
 	 * @param name the local name to use to differentiate the repository
 	 * @param url the URL to the root of the repository.  INCLUDE the trailing slash
 	 */
-	Repository (String name, String url) {
+	public Repository (String name, String url) {
 		super(name);
 		this.listURL = url;
 	}

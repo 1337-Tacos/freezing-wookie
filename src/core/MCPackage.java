@@ -59,7 +59,7 @@ public class MCPackage implements Serializable {
 	protected String homePage;
 	protected String Description = "";
 
-	MCPackage(Repository parent) {
+	public MCPackage(Repository parent) {
 		this.parent = parent;
 	}
 
