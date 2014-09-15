@@ -112,4 +112,11 @@ public class MCPackage implements Serializable {
 		return this.shortDesc;
 	}
 
+	public boolean checkValidity() {
+		if (this.fileName == null || this.version == null)
+			return false;
+		if (this.name == null || this.packageID == null)
+			return false;
+		return true;
+	}
 }
