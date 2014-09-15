@@ -86,7 +86,7 @@ public class MCPackage implements Serializable {
 		this.parent = new Repository("error", "http://error.com/");
 	}
 
-	//Get standard package details
+	//TODO:  Get standard package details
 
 	public String getDownloadLink() {
 		return "packages/" + fileName;
@@ -100,16 +100,44 @@ public class MCPackage implements Serializable {
 		return this.packageID;
 	}
 
+	public void setID(String ID) {
+		this.packageID = ID;
+	}
+
 	public String getName() {
 		return this.name;
+	}
+
+	public void setName(String newName) {
+		this.name = newName;
 	}
 
 	public String getDescription() {
 		return this.Description;
 	}
 
+	public void setDescription(String desc) {
+		this.Description = desc;
+	}
+
 	public String getShortDesc() {
 		return this.shortDesc;
+	}
+
+	public void setShortDesc(String desc) {
+		this.shortDesc = desc;
+	}
+
+	public String getauthor() {
+		return this.author;
+	}
+
+	public void setAuthor(String auth) {
+		this.author = auth;
+	}
+
+	public void addTag(String tag) {
+		this.tags.add(tag);
 	}
 
 	public boolean checkValidity() {
