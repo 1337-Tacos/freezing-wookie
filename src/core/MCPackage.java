@@ -59,6 +59,12 @@ public class MCPackage implements Serializable {
 	protected String homePage;
 	protected String Description = "";
 
+	/**
+	 * license is a name of the mod's license, followed by a link to the license's text on curseforge. 
+	 */
+	protected String license;
+	protected String licenseLink;
+
 	public MCPackage(Repository parent) {
 		this.parent = parent;
 	}
@@ -134,6 +140,11 @@ public class MCPackage implements Serializable {
 
 	public void setAuthor(String auth) {
 		this.author = auth;
+	}
+
+	public void setLicense(String lic, String link) {
+		this.license = lic;
+		this.licenseLink = link;
 	}
 
 	public void addTag(String tag) {
