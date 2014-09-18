@@ -60,7 +60,7 @@ public class MCPackage implements Serializable {
 	private String releaseType = "normal";
 	private Date releaseDate;
 
-	protected String md5Sum;
+	protected String sha256;
 	protected String fileName;
 
 	protected String author = "";
@@ -170,11 +170,13 @@ public class MCPackage implements Serializable {
 		return this.releaseDate;
 	}
 
-	public String getMD5Sum() {
-		return this.md5Sum;
+	public String getSha256() {
+		return this.sha256;
 	}
 
-	//File name????
+	public String getFileName() {
+		return this.fileName;
+	}
 
 	public String getauthor() {
 		return this.author;
@@ -258,8 +260,8 @@ public class MCPackage implements Serializable {
 		//TODO: parse string dates 
 	}
 
-	public void setMD5Sum(String md5) {
-		this.md5Sum = md5;
+	public void setSha256(String sha) {
+		this.sha256 = sha;
 	}
 
 	//filename?

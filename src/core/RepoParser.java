@@ -115,7 +115,7 @@ public abstract class RepoParser {
 			dealReplace(line[1], pack);
 			break;
 		case "MD5sum":
-			pack.md5Sum = line[1];
+			pack.sha256 = line[1];
 			break;
 		case "Filename":
 			pack.fileName = line[1];
