@@ -2,6 +2,8 @@ package core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MCPackage implements Serializable {
 
@@ -32,6 +34,9 @@ public class MCPackage implements Serializable {
 	 * Technically should include the config file, and anything else the mod will download
 	 */
 	protected String Description = "";
+	/**
+	 * The size (in bytes) of all related mod files
+	 */
 	protected int size = 0;
 	/**
 	 * a list of tags (generally categories) which the mod falls into.
@@ -47,12 +52,15 @@ public class MCPackage implements Serializable {
 	protected ArrayList<String> suggests = new ArrayList<String>();
 	protected ArrayList<ModRef> conflicts = new ArrayList<ModRef>();
 	protected ArrayList<String> replaces = new ArrayList<String>();
-	
-	
-	//type?
-	//architecture?
 
-	protected String md5Sum = "";
+	/**
+	 * A string witch represents the type of release.
+	 * Valid options: Normal, Beta, Alpha, Dev
+	 */
+	public String ReleaseType = "normal";
+	private Date releaseDate;
+
+	protected String md5Sum;
 	protected String fileName;
 
 	protected String author = "";
@@ -65,9 +73,9 @@ public class MCPackage implements Serializable {
 	protected String license;
 	protected String licenseLink;
 
-	public MCPackage(Repository parent) {
-		this.parent = parent;
-	}
+	/******************************************
+	 *                Constructors
+	 *****************************************/
 
 	/**
 	 * Normal Constructor, minimum (to be full) parameters
@@ -77,19 +85,28 @@ public class MCPackage implements Serializable {
 	 * @param size the size (in bytes) which the mod will consume.
 	 */
 	MCPackage(Repository parent, String id, String name, String version, String file) {
-		this.parent = parent;
+		this(parent);
 		this.packageID = id;
 		this.name = name;
 		this.version = version;
 		this.fileName = file;
 	}
 
-	MCPackage() {
-		this.name = "Error- No package Matches";
-		this.fileName = "error.jar";
-		this.packageID = "error";
-		this.parent = new Repository("error", "http://error.com/");
+	public MCPackage(Repository parent) {
+		this.parent = parent;
+
+		Calendar cal = Calendar.getInstance();
+		cal.set(1990, 1, 1);
+		this.releaseDate = cal.getTime();
 	}
+
+	MCPackage() {
+		this(new Repository("err", "http://err.com") );
+	}
+
+	/******************************************
+	 *                Methods
+	 *****************************************/
 
 	//TODO:  Get standard package details
 
@@ -148,6 +165,10 @@ public class MCPackage implements Serializable {
 	//Get Conflicts
 
 	//Get Replaces
+
+	public Date getReleaseDate() {
+		return this.releaseDate;
+	}
 
 	public String getMD5Sum() {
 		return this.md5Sum;
@@ -218,6 +239,12 @@ public class MCPackage implements Serializable {
 	//add conflicts
 
 	//add replaces
+
+	public void setReleaseDate(int year, int month, int day) {
+		Calendar cal = Calendar.getInstance();
+		cal.set(year, month, day);
+		this.releaseDate = cal.getTime();
+	}
 
 	public void setMD5Sum(String md5) {
 		this.md5Sum = md5;
