@@ -31,7 +31,8 @@ public class MCPackage implements Serializable {
 	 * The size (in bytes) which the mod will consume.
 	 * Technically should include the config file, and anything else the mod will download
 	 */
-	protected int size;
+	protected String Description = "";
+	protected int size = 0;
 	/**
 	 * a list of tags (generally categories) which the mod falls into.
 	 * There are a number of supported recommended categories you should use, listed elsewhere.
@@ -51,13 +52,12 @@ public class MCPackage implements Serializable {
 	//type?
 	//architecture?
 
-	protected String md5Sum;
+	protected String md5Sum = "";
 	protected String fileName;
 
 	protected String author = "";
-	protected String maintainer;
+	protected String maintainer = "";
 	protected String homePage;
-	protected String Description = "";
 
 	/**
 	 * license is a name of the mod's license, followed by a link to the license's text on curseforge. 
@@ -98,6 +98,10 @@ public class MCPackage implements Serializable {
 		return "packages/" + fileName;
 	}
 
+	/******************************************
+	 *                Getters
+	 *****************************************/
+
 	public Repository getParent() {
 		return this.parent;
 	}
@@ -106,36 +110,82 @@ public class MCPackage implements Serializable {
 		return this.packageID;
 	}
 
-	public void setID(String ID) {
-		this.packageID = ID;
+	public String getVersion() {
+		return this.version;
 	}
 
 	public String getName() {
 		return this.name;
 	}
 
-	public void setName(String newName) {
-		this.name = newName;
+	public String getShortDesc() {
+		return this.shortDesc;
 	}
 
 	public String getDescription() {
 		return this.Description;
 	}
 
+	public int getsize() {
+		return this.size;
+	}
+
+	public ArrayList<String> getTags() {
+		return this.tags;
+	}
+
+	//Get Depends
+
+	//Get Suggests
+
+	//Get Conflicts
+
+	//Get Replaces
+
+	public String getMD5Sum() {
+		return this.md5Sum;
+	}
+
+	//File name????
+
+	public String getauthor() {
+		return this.author;
+	}
+
+	public String getMaintainer() {
+		return this.maintainer;
+	}
+
+	public String getHomePage() {
+		return this.homePage;
+	}
+
+	public String getLicense() {
+		return this.license;
+	}
+
+	public String getLiceseLink() {
+		return this.licenseLink;
+	}
+
+	/******************************************
+	 *               Setters
+	 *****************************************/
+
+	public void setID(String ID) {
+		this.packageID = ID;
+	}
+
+	public void setName(String newName) {
+		this.name = newName;
+	}
+
 	public void setDescription(String desc) {
 		this.Description = desc;
 	}
 
-	public String getShortDesc() {
-		return this.shortDesc;
-	}
-
 	public void setShortDesc(String desc) {
 		this.shortDesc = desc;
-	}
-
-	public String getauthor() {
-		return this.author;
 	}
 
 	public void setAuthor(String auth) {
