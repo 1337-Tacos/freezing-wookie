@@ -78,13 +78,12 @@ public class MCPackage implements Serializable {
 	 */
 	MCPackage(Repository parent, String id, String name, String version, String file) {
 		this.parent = parent;
-
 		this.packageID = id;
 		this.name = name;
 		this.version = version;
 		this.fileName = file;
 	}
-	
+
 	MCPackage() {
 		this.name = "Error- No package Matches";
 		this.fileName = "error.jar";
@@ -96,6 +95,14 @@ public class MCPackage implements Serializable {
 
 	public String getDownloadLink() {
 		return "packages/" + fileName;
+	}
+
+	public boolean checkValidity() {
+		if (this.fileName == null || this.version == null)
+			return false;
+		if (this.name == null || this.packageID == null)
+			return false;
+		return true;
 	}
 
 	/******************************************
@@ -172,40 +179,66 @@ public class MCPackage implements Serializable {
 	 *               Setters
 	 *****************************************/
 
+	public void setParent(Repository repo) {
+		this.parent = repo;
+	}
+
 	public void setID(String ID) {
 		this.packageID = ID;
+	}
+
+	public void setVersion(String ver) {
+		this.version = ver;
 	}
 
 	public void setName(String newName) {
 		this.name = newName;
 	}
 
-	public void setDescription(String desc) {
-		this.Description = desc;
-	}
-
 	public void setShortDesc(String desc) {
 		this.shortDesc = desc;
 	}
 
-	public void setAuthor(String auth) {
-		this.author = auth;
+	public void setDescription(String desc) {
+		this.Description = desc;
 	}
 
-	public void setLicense(String lic, String link) {
-		this.license = lic;
-		this.licenseLink = link;
+	public void setSize(int newSize) {
+		this.size = newSize;
 	}
 
 	public void addTag(String tag) {
 		this.tags.add(tag);
 	}
 
-	public boolean checkValidity() {
-		if (this.fileName == null || this.version == null)
-			return false;
-		if (this.name == null || this.packageID == null)
-			return false;
-		return true;
+	//add Depends
+
+	//add suggests
+
+	//add conflicts
+
+	//add replaces
+
+	public void setMD5Sum(String md5) {
+		this.md5Sum = md5;
+	}
+
+	//filename?
+
+	public void setAuthor(String auth) {
+		this.author = auth;
+	}
+
+	public void setMaintainer(String main) {
+		this.maintainer = main;
+	}
+
+	public void setHomePage(String home) {
+		this.homePage = home;
+	}
+
+	public void setLicense(String lic, String link) {
+		this.license = lic;
+		this.licenseLink = link;
 	}
 }
