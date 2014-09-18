@@ -57,7 +57,7 @@ public class MCPackage implements Serializable {
 	 * A string witch represents the type of release.
 	 * Valid options: Normal, Beta, Alpha, Dev
 	 */
-	public String ReleaseType = "normal";
+	private String releaseType = "normal";
 	private Date releaseDate;
 
 	protected String md5Sum;
@@ -240,10 +240,22 @@ public class MCPackage implements Serializable {
 
 	//add replaces
 
+	public boolean setReleaseType(String type) {
+		if (type == "normal" || type == "beta" || type == "alpha" || type == "dev") {
+			this.releaseType = type;
+			return true;
+		} else
+			return false;
+	}
+
 	public void setReleaseDate(int year, int month, int day) {
 		Calendar cal = Calendar.getInstance();
 		cal.set(year, month, day);
 		this.releaseDate = cal.getTime();
+	}
+
+	public void setReleaseDate() {
+		//TODO: parse string dates 
 	}
 
 	public void setMD5Sum(String md5) {
