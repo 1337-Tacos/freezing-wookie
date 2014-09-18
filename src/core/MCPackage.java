@@ -79,7 +79,7 @@ public class MCPackage implements Serializable {
 
 	/**
 	 * Normal Constructor, minimum (to be full) parameters
-	 * @param id the uniqueID (shortname) of the mod.  This is a string with no spaces, analogous to linux package names.
+	 * @param id the uniqueID (shortname) of the mod.  This is a string with no spaces, analogous to Linux package names.
 	 * @param name the Human-Readable name of the mod.  This should be the actual mod name.
 	 * @param version the version this package is on
 	 * @param size the size (in bytes) which the mod will consume.
@@ -165,6 +165,10 @@ public class MCPackage implements Serializable {
 	//Get Conflicts
 
 	//Get Replaces
+
+	public String getReleaseTpe() {
+		return this.releaseType;
+	}
 
 	public Date getReleaseDate() {
 		return this.releaseDate;
