@@ -2,8 +2,6 @@ package core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 public class MCPackage implements Serializable {
 
@@ -58,7 +56,7 @@ public class MCPackage implements Serializable {
 	 * Valid options: Normal, Beta, Alpha, Dev
 	 */
 	private String releaseType = "normal";
-	private Date releaseDate;
+	private String releaseDate;
 
 	protected String sha256;
 	protected String fileName;
@@ -94,10 +92,6 @@ public class MCPackage implements Serializable {
 
 	public MCPackage(Repository parent) {
 		this.parent = parent;
-
-		Calendar cal = Calendar.getInstance();
-		cal.set(1990, 1, 1);
-		this.releaseDate = cal.getTime();
 	}
 
 	MCPackage() {
@@ -170,7 +164,7 @@ public class MCPackage implements Serializable {
 		return this.releaseType;
 	}
 
-	public Date getReleaseDate() {
+	public String getReleaseDate() {
 		return this.releaseDate;
 	}
 
@@ -254,10 +248,8 @@ public class MCPackage implements Serializable {
 			return false;
 	}
 
-	public void setReleaseDate(int year, int month, int day) {
-		Calendar cal = Calendar.getInstance();
-		cal.set(year, month, day);
-		this.releaseDate = cal.getTime();
+	public void setReleaseDate(String newDate) {
+		this.releaseDate = newDate;
 	}
 
 	public void setReleaseDate() {
