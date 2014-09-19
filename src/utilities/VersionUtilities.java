@@ -11,7 +11,7 @@ public final class VersionUtilities {
 	 * Converts, compares and returns which string is the latest (bigger) version string
 	 * @param first the first version string to comapare
 	 * @param second the second version string to compare
-	 * @return true if the first string is larger than the second string
+	 * @return true if the first string is larger, or equal to, the second string
 	 */
 	public static final boolean compareVersions(String first, String second) {
 		//Clean any letters or other things that don't belong in a version string.
