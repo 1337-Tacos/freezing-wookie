@@ -212,7 +212,7 @@ public class Builder extends JFrame {
 		ArrayList<Object[]> arLs = new ArrayList<Object[]>();
 		for (MCPackage pack : packs) {
 			Object[] array = new Object[3];
-			//TODO:  array[0] = pack.getImage();
+			array[0] = pack.getLogo();
 			array[1] = pack.getName();
 			array[2] = pack.getID();
 			arLs.add(array);

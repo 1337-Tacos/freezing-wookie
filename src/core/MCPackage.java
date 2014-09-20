@@ -64,6 +64,7 @@ public class MCPackage implements Serializable {
 	protected String author = "";
 	protected String maintainer = "";
 	protected String homePage;
+	private String logoURL;
 
 	/**
 	 * license is a name of the mod's license, followed by a link to the license's text on curseforge. 
@@ -196,6 +197,10 @@ public class MCPackage implements Serializable {
 		return this.licenseLink;
 	}
 
+	public String getLogo() {
+		return this.logoURL;
+	}
+
 	/******************************************
 	 *               Setters
 	 *****************************************/
@@ -277,5 +282,9 @@ public class MCPackage implements Serializable {
 	public void setLicense(String lic, String link) {
 		this.license = lic;
 		this.licenseLink = link;
+	}
+
+	public void setLogo(String logo) {
+		this.logoURL = logo;
 	}
 }

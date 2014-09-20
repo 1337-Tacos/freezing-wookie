@@ -33,10 +33,10 @@ public final class VersionUtilities {
 		//procedurally compare Integers, and return when done.
 		for (int i = 0; i < 90; i++) {
 			//TODO: research in .size() in relation to starting at 0
-			if (secondI.size() < i)
+			if (secondI.size() < i+1)
 				//If second string has less length than first (or both even so far, but both same)
 				return true;
-			if (firstI.size() < i)
+			if (firstI.size() < i+1)
 				//if first string has less length than second
 				return false;
 			if (firstI.get(i) == secondI.get(i))
