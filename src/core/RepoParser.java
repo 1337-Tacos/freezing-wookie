@@ -7,7 +7,6 @@ import java.io.StringReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Vector;
 
 public abstract class RepoParser {
 
@@ -50,7 +49,7 @@ public abstract class RepoParser {
 			//Blank Line.  End of this package.  Load next.
 			case "":
 				System.out.println("Blank Line.  Loading next package");
-				if (checkValidity(curPack))
+				if (curPack.checkValidity())
 					packs.add(curPack);
 				else
 					System.out.println("a Package in " + repo.listName + " did not supply sufficient information.");
@@ -69,7 +68,7 @@ public abstract class RepoParser {
 			}
 		}
 		//Save the last pack
-		if (checkValidity(curPack))
+		if (curPack.checkValidity())
 			packs.add(curPack);
 		else
 			System.out.println("a Package in " + repo.listName + " did not supply sufficient information.2");
@@ -116,7 +115,7 @@ public abstract class RepoParser {
 			dealReplace(line[1], pack);
 			break;
 		case "MD5sum":
-			pack.md5Sum = line[1];
+			pack.sha256 = line[1];
 			break;
 		case "Filename":
 			pack.fileName = line[1];
@@ -131,7 +130,7 @@ public abstract class RepoParser {
 			pack.homePage = line[1];
 			break;
 		case "Description":
-			dealDescription(line[1]);
+			dealDescription(line[1], pack);
 			break;
 		default:
 			System.out.println("Unrecognized type:" + line[0]);
@@ -151,14 +150,14 @@ public abstract class RepoParser {
 	}
 
 	//TODO:  dealDescription
-	private static void dealDescription(String line) {
-		System.out.println("lol lol lol this is a long paragraph or something.  at least long enough to test word-wrapping.  lol. \n hello");
+	private static void dealDescription(String line, MCPackage pack) {
+		pack.Description = "lol lol lol this is a long paragraph or something.  at least long enough to test word-wrapping.  lol. \n hello.  And then poop was launched out of bob's taco-cannon, which caused mary to jump off the eifel tower.  This line is waaaaaay too long to follow proper coding conventions, but it would be way too annoying for me to use like 5 lines to contain it all.";
 	}
 
 	private static void dealSuggest(String suggests, MCPackage pack) {
 		String[] parts = suggests.split("\\,\\ ");
 		for (int i = 0; i < parts.length; i++) {
-			pack.replaces.add(parts[i]);
+			pack.suggests.add(parts[i]);
 		}
 	}
 	
@@ -167,13 +166,5 @@ public abstract class RepoParser {
 		for (int i = 0; i < parts.length; i++) {
 			pack.replaces.add(parts[i]);
 		}
-	}
-
-	private static boolean checkValidity(MCPackage pack) {
-		if (pack.fileName == null || pack.version == null)
-			return false;
-		if (pack.name == null || pack.packageID == null)
-			return false;
-		return true;
 	}
 }

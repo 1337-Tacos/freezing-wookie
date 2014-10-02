@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
-import java.util.Vector;
+
+import utilities.VersionUtilities;
 
 public class Manager {
 
@@ -76,7 +77,7 @@ public class Manager {
 				//If it's already in it....
 				if (finalMap.containsKey(pack.packageID)) {
 					//Is this new one newer?
-					if (pack.version.compareToIgnoreCase( finalMap.get(pack.packageID).version) > 0) {
+					if (VersionUtilities.compareVersions(pack.version, finalMap.get(pack.packageID).getVersion()) ) {
 						//Then we update the one in the list.
 						finalMap.put(pack.packageID, pack);
 					}
@@ -95,6 +96,18 @@ public class Manager {
 			finalList.add(finalMap.get(key));
 		}
 		return finalList;
+	}
+
+	public MCPackage getPackage(String string) {
+		MCPackage pack = new MCPackage();
+		for (Repository repo : this.repoList) {
+			for (MCPackage i : repo.getPackageList()) {
+				if (i.packageID.equalsIgnoreCase(string) && VersionUtilities.compareVersions(i.version, pack.version) ) { //i.version.compareTo(pack.version) > 0) {
+					pack = i;
+				}
+			}
+		}
+		return pack;
 	}
 
 	/**

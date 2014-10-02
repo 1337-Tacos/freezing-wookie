@@ -8,16 +8,17 @@ import gui.Builder;
 public class Launch {
 	
 	public static Builder builderWin;
+	public static Manager man = new Manager();
 	
 	public static void main(String[] args){
+		
+		man.addRepo("hydra-main", "http://hydra.13-thirtyseven.com/");
+		man.updateRepos();
 		
 		SwingUtilities.invokeLater(new Runnable(){
 
 			@Override
 			public void run() {
-				
-				Repository repo = new Repository("lol", "http://hydra.13-thirtyseven.com/");
-				repo.updateList();
 				
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -25,7 +26,7 @@ public class Launch {
 					System.err.println("Couldn't change GUI theme.");
 				}
 				
-				Launch.builderWin = new Builder();
+				Launch.builderWin = new Builder(man);
 			}
 			
 		});
